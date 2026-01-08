@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# PyTorch
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+runs/
+logs/
+checkpoints/
+wandb/
+
+# Data
+data/raw/
+data/processed/
+data/custom/images/
+data/custom/labels/
+*.csv
+*.json
+!data/schemas/*.json
+!substitution_taxonomy.json
+!spice_graph.json
+
+# Models
+models/weights/
+models/pretrained/
+!models/.gitkeep
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Deployment
+*.env
+.env.local
+
+# Large files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Temporary
+tmp/
+temp/
+*.tmp

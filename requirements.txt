@@ -1,0 +1,36 @@
+# Core ML Framework (Blackwell RTX 50-series compatible)
+# Install command: pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu128
+--extra-index-url https://download.pytorch.org/whl/nightly/cu128
+--pre
+torch
+torchvision
+
+# Computer Vision
+ultralytics==8.3.50
+opencv-python==4.10.0.84
+pillow==11.0.0
+
+# NLP & LLM
+transformers==4.47.1
+peft==0.14.0
+datasets==3.2.0
+accelerate==1.2.1
+sentencepiece==0.2.0
+
+# OCR
+paddleocr==2.8.1
+paddlepaddle-gpu==2.6.2
+
+# Web Interface
+streamlit==1.40.2
+
+# Utilities
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.6.0
+tqdm==4.67.1
+
+# Development
+pytest==8.3.4
+black==24.10.0
+flake8==7.1.1
