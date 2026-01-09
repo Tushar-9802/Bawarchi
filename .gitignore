@@ -7,12 +7,12 @@ __pycache__/
 venv/
 env/
 ENV/
-.venv
+.venv/
 pip-log.txt
 pip-delete-this-directory.txt
 
 # Jupyter
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *.ipynb
 
 # PyTorch
@@ -25,21 +25,29 @@ logs/
 checkpoints/
 wandb/
 
-# Data
-data/raw/
-data/processed/
+# Dataset Images (MUST be ignored - too large)
+data/public/roboflow/train/
+data/public/roboflow/valid/
+data/public/roboflow/test/
+data/public/open_images/images/
+data/public/open_images/labels/
 data/custom/images/
 data/custom/labels/
-*.csv
-*.json
-!data/schemas/*.json
-!substitution_taxonomy.json
-!spice_graph.json
+
+# Dataset Metadata (large CSVs)
+data/public/open_images/metadata/*.csv
+data/recipes/raw/recipe_nlg.csv
+data/recipes/raw/manual_data/
+
+# Recipe JSON files (very large)
+data/recipes/processed/train.json
+data/recipes/processed/val.json
+data/recipes/processed/test.json
+data/recipes/processed/recipes_processed.json
 
 # Models
 models/weights/
 models/pretrained/
-!models/.gitkeep
 
 # Streamlit
 .streamlit/secrets.toml
@@ -69,13 +77,13 @@ htmlcov/
 *.env
 .env.local
 
-# Large files
+# Archives
 *.zip
 *.tar.gz
 *.rar
 *.7z
 
-# Temporary
+# Temp
 tmp/
 temp/
 *.tmp
