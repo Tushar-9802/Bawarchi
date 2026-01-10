@@ -1,6 +1,0 @@
-path: C:\Users\Tushar\Desktop\bawarchi\data\public\open_images
-train: images
-val: images
-
-nc: 7
-names: ['apple', 'banana', 'carrot', 'tomato', 'orange', 'broccoli', 'chicken']

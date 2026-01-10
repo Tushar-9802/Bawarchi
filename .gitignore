@@ -41,6 +41,7 @@ data/recipes/processed/
 data/recipes/processed/dataset_summary.json
 data/recipes/processed/dataset_summary.json
 data/public/roboflow/test/images/
+data/merged/
 
 # Images in data folder
 data/**/*.jpg

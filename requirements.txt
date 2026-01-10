@@ -34,3 +34,29 @@ tqdm==4.67.1
 pytest==8.3.4
 black==24.10.0
 flake8==7.1.1
+# DATASET ACQUISITION DEPENDENCIES
+
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=12.0.0  # For parquet files
+
+# Dataset libraries
+datasets>=2.14.0  # HuggingFace datasets
+kaggle>=1.5.16    # Kaggle API
+
+# Download utilities
+requests>=2.31.0
+gdown>=4.7.1      # Google Drive downloads
+tqdm>=4.65.0
+
+# Image processing (for later validation)
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# JSON/YAML parsing
+pyyaml>=6.0
+
+# Optional: For web scraping if needed
+beautifulsoup4>=4.12.0
+selenium>=4.12.0
