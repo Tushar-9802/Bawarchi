@@ -1,0 +1,16 @@
+Production Detection Model
+=========================
+Model: YOLOv8m
+Training run: bawarchi_medium_v2
+Date: 2026-01-11
+
+Specifications:
+  Architecture: YOLOv8m
+  Parameters: 25.9M
+  Performance: 66.51% mAP@0.5
+  Dataset: 9,933 images, 124 classes
+
+Files:
+  PyTorch: models/detection/production/yolov8m_best.pt
+  TorchScript: models/detection/production/yolov8m_best.torchscript
+  Results: results/detection/production/

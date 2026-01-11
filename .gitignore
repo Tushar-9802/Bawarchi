@@ -101,3 +101,9 @@ htmlcov/
 tmp/
 temp/
 *.tmp
+# Detection models (large files)
+models/detection/production/*.pt
+models/detection/production/*.torchscript
+models/detection/archived/*.pt
+*.cache
+logs/*.log

@@ -1,0 +1,17 @@
+Model Comparison
+================
+Training date: 2026-01-11
+
+YOLOv8n (Baseline)
+  Run: bawarchi_baseline
+  Params: 3.3M | mAP@0.5: 0.5555
+
+YOLOv8s (Optimized)
+  Run: bawarchi_optimized
+  Params: 11M | mAP@0.5: 0.6275
+
+YOLOv8m (Production)
+  Run: bawarchi_medium_v2
+  Params: 25.9M | mAP@0.5: 0.6651
+
+Selection rationale: YOLOv8m selected for production
