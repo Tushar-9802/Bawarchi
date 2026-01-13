@@ -35,14 +35,14 @@ def reverse_mapping(ingredient_mapping):
 
 def detect_cuisine(recipe_row):
     """Detect if recipe is Indian, Mexican, or other"""
-    title = str(recipe_row.get('name', '')).lower()
-    tags = str(recipe_row.get('tags', '')).lower()
+    title = str(recipe_row.get('Name', '')).lower()
+    keywords = str(recipe_row.get('Keywords', '')).lower()
     
     indian_keywords = ['indian', 'curry', 'masala', 'tandoori', 'biryani', 'dal', 'paneer']
     mexican_keywords = ['mexican', 'taco', 'burrito', 'salsa', 'enchilada', 'tortilla', 'quesadilla']
     
-    is_indian = any(kw in title or kw in tags for kw in indian_keywords)
-    is_mexican = any(kw in title or kw in tags for kw in mexican_keywords)
+    is_indian = any(kw in title or kw in keywords for kw in indian_keywords)
+    is_mexican = any(kw in title or kw in keywords for kw in mexican_keywords)
     
     if is_indian and not is_mexican:
         return 'indian'
@@ -80,11 +80,36 @@ def build_cooccurrence_matrices(recipes_df, detection_classes, reverse_map, min_
             print(f"  Processed {idx}/{len(recipes_df)} recipes")
         
         # Get ingredients and map to detection classes
-        ingredients = row.get('ingredients', [])
-        if not isinstance(ingredients, list):
+        ingredients_value = row.get('RecipeIngredientParts')
+        ingredients = []
+        
+        # Check for null
+        if ingredients_value is None:
             continue
         
-        ingredients = [ing.lower().strip() for ing in ingredients]
+        # Handle numpy array (most common)
+        if hasattr(ingredients_value, '__array__'):
+            ingredients = list(ingredients_value)
+        elif isinstance(ingredients_value, list):
+            ingredients = ingredients_value
+        elif isinstance(ingredients_value, str):
+            # Parse string representation
+            try:
+                import ast
+                parsed = ast.literal_eval(ingredients_value)
+                if isinstance(parsed, list):
+                    ingredients = parsed
+            except:
+                # Try splitting by delimiters
+                if ',' in ingredients_value:
+                    ingredients = [x.strip() for x in ingredients_value.split(',')]
+                elif ';' in ingredients_value:
+                    ingredients = [x.strip() for x in ingredients_value.split(';')]
+        
+        if not ingredients:
+            continue
+        
+        ingredients = [ing.lower().strip() for ing in ingredients if ing and isinstance(ing, str)]
         
         # Map to detection classes
         detected_classes = set()
@@ -176,7 +201,7 @@ def build_cooccurrence_matrices(recipes_df, detection_classes, reverse_map, min_
 def main():
     # Paths
     data_yaml = Path("data/merged/data.yaml")
-    recipes_parquet = Path("data/recipes/recipes_processed.parquet")
+    recipes_parquet = Path("data/recipes/food_com/recipes.parquet")
     mapping_file = Path("data/substitution/ingredient_mapping.json")
     output_dir = Path("data/substitution")
     
@@ -206,6 +231,15 @@ def main():
     print(f"\nLoading recipes from {recipes_parquet}")
     recipes_df = pd.read_parquet(recipes_parquet)
     print(f"Loaded {len(recipes_df)} recipes")
+    
+    # Debug: Check ingredient format
+    if len(recipes_df) > 0:
+        sample = recipes_df['RecipeIngredientParts'].iloc[0]
+        print(f"Sample ingredient format: type={type(sample).__name__}")
+        if hasattr(sample, '__array__'):
+            print(f"Detected as numpy array with {len(sample)} ingredients")
+        else:
+            print(f"Sample value={sample}")
     
     # Build matrices
     pmi_overall, pmi_indian, pmi_mexican, ingredient_counts = build_cooccurrence_matrices(

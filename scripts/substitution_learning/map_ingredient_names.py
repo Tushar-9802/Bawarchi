@@ -132,11 +132,54 @@ def load_recipe_ingredients(recipes_parquet_path):
     print(f"Loading recipes from {recipes_parquet_path}")
     df = pd.read_parquet(recipes_parquet_path)
     
+    # Debug: Check data format
+    if len(df) > 0:
+        sample = df['RecipeIngredientParts'].iloc[0]
+        print(f"Sample ingredient format: type={type(sample).__name__}")
+        if hasattr(sample, '__array__'):
+            print(f"Detected as numpy array with {len(sample)} ingredients")
+            print(f"Sample ingredients: {list(sample)[:3]}")
+        else:
+            print(f"Sample value: {sample}")
+    
     # Collect all ingredients
     all_ingredients = []
-    for ingredients_list in df['ingredients']:
-        if isinstance(ingredients_list, list):
-            all_ingredients.extend([ing.lower().strip() for ing in ingredients_list])
+    
+    for idx, ingredients_value in enumerate(df['RecipeIngredientParts']):
+        if idx % 10000 == 0 and idx > 0:
+            print(f"  Processed {idx}/{len(df)} recipes, found {len(all_ingredients)} ingredient mentions")
+        
+        # Handle different formats
+        ingredients_list = []
+        
+        # Check for null/NaN first
+        if ingredients_value is None:
+            continue
+        
+        # Handle numpy array (most common in parquet)
+        if hasattr(ingredients_value, '__array__'):
+            # It's a numpy array
+            ingredients_list = list(ingredients_value)
+        elif isinstance(ingredients_value, list):
+            # Already a Python list
+            ingredients_list = ingredients_value
+        elif isinstance(ingredients_value, str):
+            # Parse string representation
+            try:
+                import ast
+                parsed = ast.literal_eval(ingredients_value)
+                if isinstance(parsed, list):
+                    ingredients_list = parsed
+            except:
+                # Try splitting by common delimiters
+                if ',' in ingredients_value:
+                    ingredients_list = [x.strip() for x in ingredients_value.split(',')]
+                elif ';' in ingredients_value:
+                    ingredients_list = [x.strip() for x in ingredients_value.split(';')]
+        
+        # Add to collection
+        if ingredients_list:
+            all_ingredients.extend([ing.lower().strip() for ing in ingredients_list if ing and isinstance(ing, str)])
     
     # Count frequencies
     ingredient_freq = Counter(all_ingredients)
@@ -149,7 +192,7 @@ def load_recipe_ingredients(recipes_parquet_path):
 def main():
     # Paths
     data_yaml = Path("data/merged/data.yaml")
-    recipes_parquet = Path("data/recipes/recipes_processed.parquet")
+    recipes_parquet = Path("data/recipes/food_com/recipes.parquet")
     output_dir = Path("data/substitution")
     output_file = output_dir / "ingredient_mapping.json"
     unmapped_file = output_dir / "unmapped_classes.txt"

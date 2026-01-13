@@ -1,0 +1,450 @@
+Substitution System Validation Report
+======================================================================
+
+METRICS
+----------------------------------------------------------------------
+Total ratings: 106
+Good/OK ratings: 81
+Overall precision: 76.42%
+Precision@1: 72.73%
+Precision@3: 78.79%
+Precision@5: 76.42%
+
+ERROR DISTRIBUTION
+----------------------------------------------------------------------
+ok: 51 (48.1%)
+good: 30 (28.3%)
+wrong_cuisine: 18 (17.0%)
+nonsensical: 7 (6.6%)
+
+CONFIDENCE ANALYSIS
+----------------------------------------------------------------------
+high: 75.56%
+medium: 81.25%
+
+DETAILED RATINGS
+----------------------------------------------------------------------
+
+Chicken -> Minced Meat
+  Rank: 1 | Score: 0.0159 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Chicken -> Chickpeas
+  Rank: 2 | Score: 0.0156 | PMI: -0.352
+  Rating: ok | Confidence: high
+
+Chicken -> Chicken Gizzards
+  Rank: 3 | Score: 0.0154 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Chicken -> noodle
+  Rank: 4 | Score: 0.0152 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Chicken -> Fish
+  Rank: 5 | Score: 0.0149 | PMI: 0.000
+  Rating: good | Confidence: medium
+
+Beef -> Minced Meat
+  Rank: 1 | Score: 0.0161 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Beef -> Fish
+  Rank: 2 | Score: 0.0159 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Beef -> Mutton
+  Rank: 3 | Score: 0.0156 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Beef -> Egg
+  Rank: 4 | Score: 0.0154 | PMI: -0.370
+  Rating: wrong_cuisine | Confidence: high
+
+Beef -> Chickpeas
+  Rank: 5 | Score: 0.0149 | PMI: -0.430
+  Rating: ok | Confidence: medium
+
+Pork -> Sausage
+  Rank: 1 | Score: 0.0297 | PMI: 0.615
+  Rating: good | Confidence: high
+
+Pork -> Bacon
+  Rank: 2 | Score: 0.0159 | PMI: -0.206
+  Rating: ok | Confidence: high
+
+Pork -> Mutton
+  Rank: 3 | Score: 0.0152 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Pork -> Egg
+  Rank: 4 | Score: 0.0149 | PMI: -0.452
+  Rating: ok | Confidence: medium
+
+Pork -> Fish
+  Rank: 5 | Score: 0.0147 | PMI: 0.000
+  Rating: good | Confidence: medium
+
+Egg -> Fish
+  Rank: 1 | Score: 0.0297 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Egg -> Green Soyabean -Hariyo Bhatmas-
+  Rank: 2 | Score: 0.0261 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Egg -> Beef
+  Rank: 3 | Score: 0.0161 | PMI: -0.370
+  Rating: ok | Confidence: high
+
+Egg -> Minced Meat
+  Rank: 4 | Score: 0.0159 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Egg -> Pork
+  Rank: 5 | Score: 0.0152 | PMI: -0.452
+  Rating: ok | Confidence: high
+
+Tofu -> Beef
+  Rank: 1 | Score: 0.0292 | PMI: 0.346
+  Rating: good | Confidence: high
+
+Tofu -> Chicken
+  Rank: 2 | Score: 0.0161 | PMI: -0.344
+  Rating: good | Confidence: high
+
+Tofu -> Fish
+  Rank: 3 | Score: 0.0159 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Tofu -> Green Soyabean -Hariyo Bhatmas-
+  Rank: 4 | Score: 0.0156 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Tofu -> Minced Meat
+  Rank: 5 | Score: 0.0149 | PMI: 0.000
+  Rating: good | Confidence: medium
+
+Tomato -> Radish
+  Rank: 1 | Score: 0.0269 | PMI: 0.509
+  Rating: wrong_cuisine | Confidence: high
+
+Tomato -> Potato
+  Rank: 2 | Score: 0.0164 | PMI: 0.333
+  Rating: nonsensical | Confidence: high
+
+Tomato -> Carrot
+  Rank: 3 | Score: 0.0161 | PMI: -0.005
+  Rating: ok | Confidence: high
+
+Tomato -> Broccoli
+  Rank: 4 | Score: 0.0159 | PMI: -0.337
+  Rating: ok | Confidence: high
+
+Tomato -> Pea
+  Rank: 5 | Score: 0.0156 | PMI: 0.066
+  Rating: ok | Confidence: high
+
+Onion -> Carrot
+  Rank: 1 | Score: 0.0315 | PMI: 0.609
+  Rating: ok | Confidence: high
+
+Onion -> Turnip
+  Rank: 2 | Score: 0.0291 | PMI: 0.614
+  Rating: ok | Confidence: high
+
+Onion -> Mushroom
+  Rank: 3 | Score: 0.0290 | PMI: 0.570
+  Rating: ok | Confidence: high
+
+Onion -> Capsicum
+  Rank: 4 | Score: 0.0289 | PMI: 0.686
+  Rating: ok | Confidence: high
+
+Onion -> Cabbage
+  Rank: 5 | Score: 0.0282 | PMI: 0.490
+  Rating: ok | Confidence: high
+
+Potato -> Broccoli
+  Rank: 1 | Score: 0.0289 | PMI: 0.425
+  Rating: good | Confidence: high
+
+Potato -> Tomato
+  Rank: 2 | Score: 0.0164 | PMI: 0.333
+  Rating: ok | Confidence: high
+
+Potato -> Beans
+  Rank: 3 | Score: 0.0154 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Potato -> Cucumber
+  Rank: 4 | Score: 0.0143 | PMI: -0.420
+  Rating: ok | Confidence: medium
+
+Potato -> Mushroom
+  Rank: 5 | Score: 0.0141 | PMI: 0.354
+  Rating: ok | Confidence: medium
+
+Carrot -> Tomato
+  Rank: 1 | Score: 0.0159 | PMI: -0.005
+  Rating: wrong_cuisine | Confidence: high
+
+Carrot -> Onion
+  Rank: 2 | Score: 0.0147 | PMI: 0.609
+  Rating: ok | Confidence: medium
+
+Carrot -> Beans
+  Rank: 3 | Score: 0.0141 | PMI: 0.000
+  Rating: ok | Confidence: medium
+
+Carrot -> Garlic
+  Rank: 4 | Score: 0.0133 | PMI: 0.179
+  Rating: wrong_cuisine | Confidence: medium
+
+Carrot -> Artichoke
+  Rank: 5 | Score: 0.0128 | PMI: 0.000
+  Rating: ok | Confidence: medium
+
+Broccoli -> Pea
+  Rank: 1 | Score: 0.0293 | PMI: 0.622
+  Rating: ok | Confidence: high
+
+Broccoli -> Potato
+  Rank: 2 | Score: 0.0289 | PMI: 0.425
+  Rating: ok | Confidence: high
+
+Broccoli -> Green Peas
+  Rank: 3 | Score: 0.0280 | PMI: 0.395
+  Rating: ok | Confidence: high
+
+Broccoli -> Cabbage
+  Rank: 4 | Score: 0.0270 | PMI: 0.349
+  Rating: good | Confidence: high
+
+Broccoli -> Turnip
+  Rank: 5 | Score: 0.0267 | PMI: 0.461
+  Rating: good | Confidence: high
+
+Cauliflower -> Cucumber
+  Rank: 1 | Score: 0.0283 | PMI: 0.207
+  Rating: wrong_cuisine | Confidence: high
+
+Cauliflower -> Mushroom
+  Rank: 2 | Score: 0.0270 | PMI: 0.489
+  Rating: good | Confidence: high
+
+Cauliflower -> Tomato
+  Rank: 3 | Score: 0.0152 | PMI: 0.136
+  Rating: wrong_cuisine | Confidence: high
+
+Cauliflower -> Beetroot
+  Rank: 4 | Score: 0.0149 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: medium
+
+Cauliflower -> Onion
+  Rank: 5 | Score: 0.0147 | PMI: 0.168
+  Rating: good | Confidence: medium
+
+Garlic -> Tomato
+  Rank: 1 | Score: 0.0285 | PMI: 0.310
+  Rating: ok | Confidence: high
+
+Garlic -> Mushroom
+  Rank: 2 | Score: 0.0282 | PMI: 0.381
+  Rating: wrong_cuisine | Confidence: high
+
+Garlic -> Capsicum
+  Rank: 3 | Score: 0.0281 | PMI: 0.594
+  Rating: wrong_cuisine | Confidence: high
+
+Garlic -> Onion
+  Rank: 4 | Score: 0.0164 | PMI: 0.247
+  Rating: good | Confidence: high
+
+Garlic -> Carrot
+  Rank: 5 | Score: 0.0161 | PMI: 0.179
+  Rating: wrong_cuisine | Confidence: high
+
+Ginger -> cumin
+  Rank: 1 | Score: 0.0279 | PMI: 0.344
+  Rating: ok | Confidence: high
+
+Ginger -> Sugar
+  Rank: 2 | Score: 0.0164 | PMI: -0.022
+  Rating: ok | Confidence: high
+
+Ginger -> Salt
+  Rank: 3 | Score: 0.0159 | PMI: -0.188
+  Rating: ok | Confidence: high
+
+Ginger -> Chili Powder
+  Rank: 4 | Score: 0.0156 | PMI: -0.132
+  Rating: ok | Confidence: high
+
+Ginger -> Chilli
+  Rank: 5 | Score: 0.0154 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Chili Powder -> Chili Pepper -Khursani-
+  Rank: 1 | Score: 0.0302 | PMI: 0.509
+  Rating: good | Confidence: high
+
+Chili Powder -> black pepper
+  Rank: 2 | Score: 0.0290 | PMI: 0.371
+  Rating: good | Confidence: high
+
+Chili Powder -> Chilli
+  Rank: 3 | Score: 0.0164 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Chili Powder -> Salt
+  Rank: 4 | Score: 0.0152 | PMI: -0.069
+  Rating: ok | Confidence: high
+
+Chili Powder -> Ginger
+  Rank: 5 | Score: 0.0147 | PMI: -0.132
+  Rating: wrong_cuisine | Confidence: medium
+
+Cinnamon -> Sugar
+  Rank: 1 | Score: 0.0318 | PMI: 0.587
+  Rating: ok | Confidence: high
+
+Cinnamon -> Salt
+  Rank: 2 | Score: 0.0298 | PMI: 0.047
+  Rating: ok | Confidence: high
+
+Cinnamon -> cumin
+  Rank: 3 | Score: 0.0161 | PMI: -0.046
+  Rating: good | Confidence: high
+
+Cinnamon -> Chilli
+  Rank: 4 | Score: 0.0149 | PMI: 0.000
+  Rating: good | Confidence: medium
+
+Cinnamon -> Masyaura
+  Rank: 5 | Score: 0.0147 | PMI: 0.000
+  Rating: good | Confidence: medium
+
+black pepper -> Chili Powder
+  Rank: 1 | Score: 0.0318 | PMI: 0.371
+  Rating: good | Confidence: high
+
+black pepper -> cumin
+  Rank: 2 | Score: 0.0308 | PMI: 0.505
+  Rating: good | Confidence: high
+
+black pepper -> Chili Pepper -Khursani-
+  Rank: 3 | Score: 0.0303 | PMI: 0.348
+  Rating: good | Confidence: high
+
+black pepper -> Salt
+  Rank: 4 | Score: 0.0294 | PMI: 0.140
+  Rating: ok | Confidence: high
+
+black pepper -> Chilli
+  Rank: 5 | Score: 0.0159 | PMI: 0.000
+  Rating: good | Confidence: high
+
+Rice -Chamal- -> Beaten Rice -Chiura-
+  Rank: 1 | Score: 0.0164 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Rice -Chamal- -> Corn
+  Rank: 2 | Score: 0.0161 | PMI: 0.265
+  Rating: ok | Confidence: high
+
+Rice -Chamal- -> Wheat
+  Rank: 3 | Score: 0.0159 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Rice -Chamal- -> Chayote-iskus-
+  Rank: 4 | Score: 0.0156 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Rice -Chamal- -> Bread
+  Rank: 5 | Score: 0.0154 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Wheat -> Corn
+  Rank: 1 | Score: 0.0304 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Wheat -> Cornflakec
+  Rank: 2 | Score: 0.0300 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Wheat -> Garden Peas
+  Rank: 3 | Score: 0.0284 | PMI: 0.000
+  Rating: wrong_cuisine | Confidence: high
+
+Wheat -> Farsi ko Munta
+  Rank: 4 | Score: 0.0278 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Wheat -> Garden cress-Chamsur ko saag-
+  Rank: 5 | Score: 0.0262 | PMI: 0.000
+  Rating: nonsensical | Confidence: high
+
+Corn -> Rice -Chamal-
+  Rank: 1 | Score: 0.0280 | PMI: 0.265
+  Rating: nonsensical | Confidence: high
+
+Corn -> Wheat
+  Rank: 2 | Score: 0.0164 | PMI: 0.000
+  Rating: nonsensical | Confidence: high
+
+Corn -> Cornflakec
+  Rank: 3 | Score: 0.0161 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Corn -> Bread
+  Rank: 4 | Score: 0.0159 | PMI: 0.000
+  Rating: nonsensical | Confidence: high
+
+Corn -> Garden Peas
+  Rank: 5 | Score: 0.0156 | PMI: 0.000
+  Rating: nonsensical | Confidence: high
+
+Cheese -> Milk
+  Rank: 1 | Score: 0.0291 | PMI: 0.268
+  Rating: ok | Confidence: high
+
+Cheese -> Butter
+  Rank: 2 | Score: 0.0161 | PMI: -0.154
+  Rating: ok | Confidence: high
+
+Cheese -> Gundruk
+  Rank: 3 | Score: 0.0159 | PMI: 0.000
+  Rating: nonsensical | Confidence: high
+
+Cheese -> Cassava -Ghar Tarul-
+  Rank: 4 | Score: 0.0156 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Milk -> Butter
+  Rank: 1 | Score: 0.0320 | PMI: 0.428
+  Rating: ok | Confidence: high
+
+Milk -> Cheese
+  Rank: 2 | Score: 0.0313 | PMI: 0.268
+  Rating: good | Confidence: high
+
+Milk -> Gundruk
+  Rank: 3 | Score: 0.0159 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Milk -> Cassava -Ghar Tarul-
+  Rank: 4 | Score: 0.0156 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Butter -> Milk
+  Rank: 1 | Score: 0.0328 | PMI: 0.428
+  Rating: ok | Confidence: high
+
+Butter -> Gundruk
+  Rank: 2 | Score: 0.0300 | PMI: 0.000
+  Rating: ok | Confidence: high
+
+Butter -> Cheese
+  Rank: 3 | Score: 0.0161 | PMI: -0.154
+  Rating: good | Confidence: high

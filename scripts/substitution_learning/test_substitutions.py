@@ -9,13 +9,13 @@ import random
 from pathlib import Path
 from substitution_ranker import SubstitutionRanker
 
-# Test ingredients across categories
+# Test ingredients across categories (Western-focused, all mapped)
 TEST_INGREDIENTS = {
-    'proteins': ['Paneer', 'Egg', 'Chicken'],
-    'vegetables': ['Tomato', 'Onion', 'Potato', 'Spinach'],
-    'spices': ['Chili Pepper -Khursani-', 'Ginger', 'Garlic'],
-    'grains': ['Rice -Chamal-', 'Wheat Flour'],
-    'dairy': ['Milk', 'Yogurt -Dahi-']
+    'proteins': ['Chicken', 'Beef', 'Pork', 'Egg', 'Tofu'],
+    'vegetables': ['Tomato', 'Onion', 'Potato', 'Carrot', 'Broccoli', 'Cauliflower'],
+    'spices': ['Garlic', 'Ginger', 'Chili Powder', 'Cinnamon', 'black pepper'],
+    'grains': ['Rice -Chamal-', 'Wheat', 'Corn'],
+    'dairy': ['Cheese', 'Milk', 'Butter']
 }
 
 ERROR_TYPES = {
