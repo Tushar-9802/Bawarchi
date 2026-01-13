@@ -12,12 +12,44 @@ from pathlib import Path
 from scipy.sparse import load_npz
 import torch.nn.functional as F
 
+# Grain substitution constraints
+GRAIN_GROUPS = {
+    'asian_grains': ['Rice -Chamal-', 'Beaten Rice -Chiura-'],
+    'western_grains': ['Wheat', 'Corn', 'Bread'],
+    'flexible': ['Corn'],  # Can substitute across groups
+}
+
+def get_grain_group(ingredient):
+    """Get grain group for ingredient"""
+    for group, members in GRAIN_GROUPS.items():
+        if ingredient in members:
+            return group
+    return None
+
+def is_valid_grain_substitution(query_ingredient, candidate):
+    """Check if grain substitution is valid"""
+    query_group = get_grain_group(query_ingredient)
+    candidate_group = get_grain_group(candidate)
+    
+    # If either not in grain groups, allow
+    if not query_group or not candidate_group:
+        return True
+    
+    # If either is flexible, allow
+    if query_group == 'flexible' or candidate_group == 'flexible':
+        return True
+    
+    # Otherwise must be same group
+    return query_group == candidate_group
+
+
 class SubstitutionRanker:
     """
     Ranks ingredient substitution candidates using multiple signals:
     - Semantic embedding similarity
     - PMI co-occurrence patterns
     - Category compatibility
+    - Grain-specific rules
     """
     
     def __init__(self, data_yaml_path, embeddings_path, pmi_matrix_path, 
@@ -115,10 +147,10 @@ class SubstitutionRanker:
         
         return ranked
     
-    def filter_by_pmi(self, candidates, query_ingredient, pmi_low=-0.5, pmi_high=0.7):
+    def filter_by_pmi(self, candidates, query_ingredient, pmi_low=-0.5, pmi_high=0.65):
         """
         Filter candidates by PMI thresholds
-        - PMI too high (>0.7): likely used together, not substitutes
+        - PMI too high (>0.65): likely used together, not substitutes
         - PMI too low (<-0.5): incompatible cuisines
         """
         if query_ingredient not in self.class_to_idx:
@@ -162,6 +194,29 @@ class SubstitutionRanker:
         
         return filtered
     
+    def filter_by_grain_rules(self, candidates, query_ingredient):
+        """Filter candidates by grain substitution rules"""
+        # Only apply to grains
+        query_category = self.categories.get(query_ingredient)
+        if query_category != 'grain':
+            return candidates
+        
+        filtered = []
+        for item in candidates:
+            candidate = item[0]
+            candidate_category = self.categories.get(candidate)
+            
+            # Only filter grain-to-grain substitutions
+            if candidate_category != 'grain':
+                filtered.append(item)
+                continue
+            
+            # Apply grain rules
+            if is_valid_grain_substitution(query_ingredient, candidate):
+                filtered.append(item)
+        
+        return filtered
+    
     def get_substitutions(self, ingredient, top_k=10, use_category_filter=True):
         """
         Get substitution candidates for an ingredient
@@ -183,6 +238,9 @@ class SubstitutionRanker:
         # Filter by category if enabled
         if use_category_filter:
             filtered = self.filter_by_category(filtered, ingredient)
+        
+        # Apply grain-specific rules
+        filtered = self.filter_by_grain_rules(filtered, ingredient)
         
         # Assign confidence levels
         results = []
