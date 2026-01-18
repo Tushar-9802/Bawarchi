@@ -1,36 +1,117 @@
-﻿@'
-# Python
+﻿# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
 venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.gitkeep
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
 
-# Model weights - CRITICAL EXCLUSIONS
+# PyTorch models and weights
+*.pth
+*.pt
+*.ckpt
 *.safetensors
 *.bin
-*.pt
-*.pth
 optimizer.pt
+runs/
+logs/
+checkpoints/
+wandb/
 
-# Training data
+# Training data (large JSONL files)
 data/training/*.jsonl
+data/training/preparation_stats.json
 
-# Logs
+# Raw data directories
+data/raw/
+data/processed/
+data/custom/images/
+data/custom/labels/
+data/public/
+data/public/open_images/
+data/public/roboflow/
+data/recipes/
+data/recipes/raw/
+data/recipes/processed/
+data/merged/
+
+# All images everywhere
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.webp
+*.tiff
+*.tif
+*.svg
+*.ico
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+
+# CSV and large JSON data files
+*.csv
+data/**/*.json
+!data/substitution/*.json
+
+# Model directories
+models/detection/production/*.pt
+models/detection/production/*.torchscript
+models/detection/archived/*.pt
+models/pretrained/
+models/weights/
+*.cache
+
+# Results and logs
 results/**/*.tfevents.*
 *.log
+logs/*.log
 
-# Data
-data/raw/
-data/recipes/
-data/merged/
-data/public/
-data/**/*.jpg
-data/**/*.png
-data/**/*.csv
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/config.toml
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
-'@ | Out-File -FilePath .gitignore -Encoding utf8 -Force
+Thumbs.db
+desktop.ini
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Deployment
+*.env
+.env.local
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Git
+.gitkeep

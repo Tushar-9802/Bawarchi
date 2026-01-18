@@ -1,0 +1,109 @@
+{
+  "total_recipes_processed": 522517,
+  "detection_classes": 124,
+  "overall_pairs": 2856,
+  "indian_pairs": 1028,
+  "mexican_pairs": 1124,
+  "top_pairs": [
+    [
+      "Red Lentils",
+      "Yellow Lentils",
+      5.466585159301758
+    ],
+    [
+      "Pea",
+      "Pear",
+      4.863605976104736
+    ],
+    [
+      "Ice",
+      "Rice -Chamal-",
+      4.353299140930176
+    ],
+    [
+      "Green Lentils",
+      "Red Lentils",
+      4.115835666656494
+    ],
+    [
+      "Beef",
+      "Pork",
+      3.139388084411621
+    ],
+    [
+      "Beef",
+      "Cassava -Ghar Tarul-",
+      3.0896432399749756
+    ],
+    [
+      "Apple",
+      "Pear",
+      2.860783100128174
+    ],
+    [
+      "Sweet Potato -Suthuni-",
+      "Turnip",
+      2.8392534255981445
+    ],
+    [
+      "Broccoli",
+      "Cauliflower",
+      2.821159839630127
+    ],
+    [
+      "Banana",
+      "Papaya",
+      2.71160888671875
+    ],
+    [
+      "Cucumber",
+      "Radish",
+      2.6990139484405518
+    ],
+    [
+      "Banana",
+      "Strawberry",
+      2.605032444000244
+    ],
+    [
+      "Bamboo Shoots -Tama-",
+      "Tofu",
+      2.562324047088623
+    ],
+    [
+      "Potato",
+      "Turnip",
+      2.5124270915985107
+    ],
+    [
+      "Black beans",
+      "Corn",
+      2.5084476470947266
+    ],
+    [
+      "Broad Beans -Bakullo-",
+      "Pea",
+      2.480978012084961
+    ],
+    [
+      "Bamboo Shoots -Tama-",
+      "Pork",
+      2.3133604526519775
+    ],
+    [
+      "Bamboo Shoots -Tama-",
+      "Soy Sauce",
+      2.3120768070220947
+    ],
+    [
+      "Lime -Kagati-",
+      "Orange",
+      2.299557685852051
+    ],
+    [
+      "Lemon -Nimbu-",
+      "Orange",
+      2.2439322471618652
+    ]
+  ]
+}
