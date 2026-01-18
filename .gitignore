@@ -1,109 +1,36 @@
+﻿@'
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
 venv/
-env/
-ENV/
-.venv
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Jupyter
-.ipynb_checkpoints
-*.ipynb
-
-# PyTorch
-*.pth
-*.pt
-*.ckpt
+# Model weights - CRITICAL EXCLUSIONS
 *.safetensors
-runs/
-logs/
-checkpoints/
-wandb/
+*.bin
+*.pt
+*.pth
+optimizer.pt
+
+# Training data
+data/training/*.jsonl
+
+# Logs
+results/**/*.tfevents.*
+*.log
 
 # Data
 data/raw/
-data/processed/
-data/custom/images/
-data/custom/labels/
-data/public/
-data/public/open_images/
-data/public/open_images/images/
-data/public/open_images/labels/
-data/public/open_images/data.yaml
 data/recipes/
-data/recipes/raw/
-data/recipes/processed/
-data/recipes/processed/dataset_summary.json
-data/recipes/processed/dataset_summary.json
-data/public/roboflow/test/images/
 data/merged/
-
-# Images in data folder
+data/public/
 data/**/*.jpg
-data/**/*.jpeg
 data/**/*.png
-data/**/*.gif
-data/**/*.bmp
-data/**/*.webp
-data/**/*.tiff
-data/**/*.tif
-data/**/*.svg
-data/**/*.ico
-
-*.csv
-*.json
-
-# Models
-models/weights/
-models/pretrained/
-!models/.gitkeep
-
-# Streamlit
-.streamlit/secrets.toml
-.streamlit/config.toml
+data/**/*.csv
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
 # OS
 .DS_Store
-Thumbs.db
-desktop.ini
-
-# Logs
-*.log
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Deployment
-*.env
-.env.local
-
-# Large files
-*.zip
-*.tar.gz
-*.rar
-*.7z
-
-# Temporary
-tmp/
-temp/
-*.tmp
-# Detection models (large files)
-models/detection/production/*.pt
-models/detection/production/*.torchscript
-models/detection/archived/*.pt
-*.cache
-logs/*.log
+'@ | Out-File -FilePath .gitignore -Encoding utf8 -Force

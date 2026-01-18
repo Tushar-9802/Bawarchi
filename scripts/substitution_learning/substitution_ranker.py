@@ -147,10 +147,10 @@ class SubstitutionRanker:
         
         return ranked
     
-    def filter_by_pmi(self, candidates, query_ingredient, pmi_low=-0.5, pmi_high=0.65):
+    def filter_by_pmi(self, candidates, query_ingredient, pmi_low=-0.5, pmi_high=0.7):
         """
         Filter candidates by PMI thresholds
-        - PMI too high (>0.65): likely used together, not substitutes
+        - PMI too high (>0.7): likely used together, not substitutes
         - PMI too low (<-0.5): incompatible cuisines
         """
         if query_ingredient not in self.class_to_idx:

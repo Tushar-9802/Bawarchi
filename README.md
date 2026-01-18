@@ -1,4 +1,3 @@
-
 # Bawarchi
 
 **AI-powered ingredient detection and fusion recipe generation**
@@ -8,15 +7,15 @@
 ## Architecture
 
 ```
-Image Input → YOLOv8m Detection → Ingredient List → 
-Substitution Network → Llama 3.2 3B Generation → Fusion Recipe
+Image Input -> YOLOv8m Detection -> Ingredient List -> 
+Substitution Network -> Llama 3.2 3B Generation -> Fusion Recipe
 ```
 
 **Components:**
 
 1. **YOLOv8m** - Ingredient detection (124 classes, 66.51% mAP@0.5)
 2. **Substitution Network** - Automated ingredient substitution learning (embedding-based)
-3. **Llama 3.2 3B + QLoRA** - Recipe generation with fusion logic
+3. **Llama 3.2 3B + LoRA** - Recipe generation with fusion logic (Windows compatible)
 4. **Cultural Context** - Indian/Mexican cuisine classification
 
 ---
@@ -25,8 +24,8 @@ Substitution Network → Llama 3.2 3B Generation → Fusion Recipe
 
 **Completed:**
 
-- ✓ Phase 1: Dataset acquisition and validation
-- ✓ Phase 2: YOLOv8m detection model training
+- [X] Phase 1: Dataset acquisition and validation
+- [X] Phase 2: YOLOv8m detection model training
 
 **In Progress:**
 
@@ -120,7 +119,7 @@ python scripts/yolo_training/test_inference.py --source image.jpg --model models
 **Models:**
 
 - Detection: YOLOv8m (25.9M params)
-- Generation: Llama 3.2 3B + QLoRA (3B params, 4-bit quantized)
+- Generation: Llama 3.2 3B + LoRA (3B params, bfloat16 precision)
 
 **Training:**
 
@@ -142,7 +141,7 @@ python scripts/yolo_training/test_inference.py --source image.jpg --model models
 **Phase 5: Recipe Generation**
 
 - Model: Llama 3.2 3B (Meta)
-- Training: QLoRA (r=16, alpha=32, 4-bit quantization)
+- Training: LoRA (r=64, alpha=16, bfloat16 precision, Windows compatible)
 - Input: Detected ingredients + optional cuisine preference
 - Output: Fusion recipe with instructions
 - Success threshold: 4.0/5.0 human evaluation
@@ -156,29 +155,32 @@ python scripts/yolo_training/test_inference.py --source image.jpg --model models
 
 ---
 
+
 ## Project Structure
 
 ```
 bawarchi/
 ├── data/
-│   ├── merged/                    # 9,933 training images (YOLO format)
-│   ├── recipes/                   # 54,857 recipe corpus (parquet)
-│   └── substitution/              # Substitution learning data
+│   ├── merged/                    # 7,229 detection images (YOLO)
+│   ├── training/                  # 380K recipes (JSONL, excluded)
+│   ├── substitution/              # PMI matrices, embeddings
+│   └── recipes/food_com/          # 522K recipe corpus (parquet)
 ├── models/
 │   ├── detection/
 │   │   └── production/            # YOLOv8m weights (66.51% mAP)
-│   ├── substitution/              # Similarity networks
-│   └── generation/                # Llama 3.2 3B checkpoints
+│   ├── bawarchi-adapter/
+│   │   ├── final/                 # Best LoRA adapter (Phase 3)
+│   │   ├── phase_1/               # Checkpoints (simple recipes)
+│   │   ├── phase_2/               # Checkpoints (complex recipes)
+│   │   └── phase_3/               # Checkpoints (fusion recipes)
 ├── results/
-│   └── detection/
-│       ├── production/            # Training curves, metrics
-│       └── comparison/            # Model comparison data
+│   ├── detection/                 # YOLOv8 training curves
+│   └── recipe_generation/         # Llama training logs
 ├── scripts/
-│   ├── dataset_preparation/       # Phase 1 scripts
-│   ├── yolo_training/             # Phase 2 scripts
-│   └── substitution_learning/     # Phase 4 scripts (in progress)
-└── logs/
-    └── detection/                 # Training logs
+│   ├── detection/                 # Phase 2 scripts
+│   ├── substitution_learning/     # Phase 3 scripts (5 modules)
+│   └── recipe_generation/         # Phase 4 scripts (6 modules)
+└── requirements.txt
 ```
 
 ---
@@ -187,42 +189,57 @@ bawarchi/
 
 **Detection:**
 
-- Weak classes (<10 annotations): Orange, Yellow Lentils, Long Beans, Water Melon, Ice, Strawberry, Wallnut, Green Peas, Crab Meat, Minced Meat
-- Missing ingredients: Ghee, Turmeric powder, Garam Masala (require custom collection)
+- Weak classes (<10 annotations): Orange, Yellow Lentils, Long Beans, etc.
+- Missing ingredients: Ghee, Turmeric powder, Garam Masala
+- Static images only (no video inference)
+
+**Recipe Generation:**
+
+- Partially trained (11h vs. optimal 24h)
+- Quality: 74% vs. potential 90%+ with full training
+- Limited to 2048 token context
 
 **Dataset:**
 
-- Static images only (no video inference)
 - Limited to 124 ingredient classes
 - Bias toward well-represented ingredients
+- General cuisine over-represented (89.7% of recipes)
 
 ---
 
 ## Future Enhancements
 
-- Collect weak class data (50-100 images per class) for +5-8% mAP improvement
-- Expand cuisine coverage (Thai, Mediterranean, Chinese)
-- Mobile deployment (ONNX export for edge devices)
-- Real-time video inference
-- Nutrition estimation
-- User feedback loop for substitution refinement
+- [ ] Complete recipe generation training (Phase 1-3 extended)
+- [ ] Collect weak class data (+5-8% mAP improvement)
+- [ ] Expand cuisine coverage (Thai, Mediterranean, Chinese)
+- [ ] Mobile deployment (ONNX export)
+- [ ] Real-time video inference
+- [ ] Nutrition estimation
+- [ ] User feedback loop
 
 ---
 
 ## Development Notes
 
-**Phase 2 Insights:**
+**Phase 2 (Detection) Insights:**
 
-- Larger models (YOLOv8m) worth the compute cost (+11% over baseline)
-- Batch size optimization critical for GPU utilization (32-64 optimal)
+- Larger models worth compute cost (+11% over baseline)
+- Batch size critical for GPU utilization (32-64 optimal)
 - Early stopping effective (converged at epoch 97/150)
-- Class imbalance major limiting factor (need targeted data collection)
 
-**Phase 4 Challenges:**
+**Phase 3 (Substitution) Insights:**
 
-- Ingredient name matching between detection classes and recipe text
-- Recipe pair scarcity (need validation)
-- Substitution quality validation (no ground truth)
+- PMI + embeddings complementary (RRF best)
+- Category filtering essential (85% → 91% precision)
+- Recipe corpus size matters (522K → good coverage)
+
+**Phase 4 (Generation) Insights:**
+
+- Curriculum learning crucial (simple → complex)
+- Response template masking critical (+10-15% quality)
+- Data loading bottleneck (workers=4 → 8x speedup)
+- Evaluation expensive (reduced to 1000 steps)
+- Quality filters important (43K/80K synthetic accepted)
 
 ---
 
@@ -235,5 +252,4 @@ MIT License
 ## Author
 
 **Tushar Jaju**
-
 GitHub: [Tushar-9802/bawarchi](https://github.com/Tushar-9802/bawarchi)

@@ -9,16 +9,18 @@ ultralytics==8.3.50
 opencv-python==4.10.0.84
 pillow==11.0.0
 
-# NLP & LLM (Phase 5)
+# NLP & LLM (Phase 4)
 transformers==4.47.1
 peft==0.14.0
-bitsandbytes==0.45.0       # ADDED: QLoRA quantization
+# bitsandbytes removed - not compatible with Windows
 datasets==3.2.0
 accelerate==1.2.1
 sentencepiece==0.2.0
-protobuf==5.29.2           # ADDED: Required by transformers
-
-# Web Interface (Phase 8)
+protobuf==5.29.2
+bert-score
+trl
+wandb
+# Web Interface (Phase 5)
 streamlit==1.40.2
 
 # Utilities
@@ -33,7 +35,8 @@ requests>=2.31.0
 
 # Training Monitoring (Phase 2)
 tensorboard==2.18.0        # ADDED: Monitor training curves
-matplotlib==3.9.3          # ADDED: Visualization (optional)
+matplotlib==3.9.3
+          # ADDED: Visualization (optional)
 
 # Development
 pytest==8.3.4
