@@ -1,4 +1,3 @@
-
 # Bawarchi
 
 **AI-powered ingredient detection and role-aware recipe generation**
@@ -315,6 +314,30 @@ Cuisine: Indian → Chicken Roti Wrap (suggests roti instead)
 **Total:** 7 weeks, ~90 hours development time
 
 ---
+
+
+## Pre-trained Models
+
+Download the trained adapter from HuggingFace:
+
+**Recipe Generation Model:**
+
+- Repository: [Tushar9802/bawarchi-recipe-generator](https://huggingface.co/Tushar-9802/bawarchi-recipe-generator)
+- Size: ~300 MB
+- Type: LoRA adapter for Llama 3.2 3B
+
+### Quick Load
+
+```
+python
+from transformers import AutoModelForCausalLM
+from peft import PeftModelmodel = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
+model = PeftModel.from_pretrained(model, "Tushar-9802/bawarchi-recipe-generator")
+```
+
+---
+
+
 
 ## License
 
