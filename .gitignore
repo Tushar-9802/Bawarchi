@@ -31,6 +31,8 @@ wandb/
 data/training/*.jsonl
 data/training/preparation_stats.json
 
+#Kaggle-Uploads
+kaggle_upload/
 # Raw data directories
 data/raw/
 data/processed/
