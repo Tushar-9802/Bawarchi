@@ -302,42 +302,73 @@ Cuisine: Indian → Chicken Roti Wrap (suggests roti instead)
 
 ## Development Timeline
 
-| Phase | Duration | Milestone                                        |
-| ----- | -------- | ------------------------------------------------ |
-| 1     | Week 1   | Dataset acquisition (9,933 images, 380K recipes) |
-| 2     | Week 2   | YOLOv8 detection training (66.51% mAP)           |
-| 3     | Week 3   | Substitution system (PMI + embeddings)           |
-| 4     | Week 4-5 | Recipe generation training (Phase 1-3)           |
-| 5     | Week 6-7 | Role-aware fine-tuning, Streamlit UI Development |
-| 6     | Week 7   | Integration, testing, deployment prep            |
+| Phase | Milestone                                        |
+| ----- | ------------------------------------------------ |
+| 1     | Dataset acquisition (9,933 images, 380K recipes) |
+| 2     | YOLOv8 detection training (66.51% mAP)           |
+| 3     | Substitution system (PMI + embeddings)           |
+| 4     | Recipe generation training (Phase 1-3)           |
+| 5     | Role-aware fine-tuning, Streamlit UI Development |
+| 6     | Integration, testing, deployment prep            |
 
-**Total:** 7 weeks, ~90 hours development time
+**Total:** 2 weeks, ~90 hours development time
 
 ---
 
+## Models & Datasets
 
-## Pre-trained Models
+### Pre-trained Models
 
-Download the trained adapter from HuggingFace:
+**HuggingFace:** [bawarchi-recipe-generation](https://huggingface.co/Tushar-9802/bawarchi-recipe-generation)
 
-**Recipe Generation Model:**
-
-- Repository: [Tushar9802/bawarchi-recipe-generator](https://huggingface.co/Tushar-9802/bawarchi-recipe-generator)
+- LoRA adapter for Llama 3.2 3B
+- Fine-tuned on 335K recipes + 1K role-based examples
+- 74.1% accuracy (recipe structure + coherence)
 - Size: ~300 MB
-- Type: LoRA adapter for Llama 3.2 3B
+- Training: 13 hours (RTX 5070 Ti)
 
-### Quick Load
+**Quick Load:**
 
-```
-python
+```python
 from transformers import AutoModelForCausalLM
-from peft import PeftModelmodel = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")
-model = PeftModel.from_pretrained(model, "Tushar-9802/bawarchi-recipe-generator")
+from peft import PeftModel
+import torch
+
+model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-3.2-3B-Instruct",
+    torch_dtype=torch.float16,
+    device_map="auto"
+)
+model = PeftModel.from_pretrained(model, "Tushar-9802/bawarchi-recipe-generation")
 ```
 
----
+### Training Data
 
+**Kaggle:** [bawarchi-training-data](https://www.kaggle.com/datasets/tusharjaju/bawarchi-training-data)
 
+- **Role-based cuisine examples** (1K) - Unique curated data teaching ingredient role reasoning
+- **Synthetic substitution data** (43K) - Quality-filtered GPT-generated scenarios
+- **Cuisine-specific PMI matrices** (3 files) - General, Indian, and Mexican co-occurrence
+- **Indian spice annotations** (202 images) - Manual YOLO annotations from Mendeley source
+- **Detection config** - References to Roboflow + Open Images datasets
+- Size: 68 MB (compressed)
+
+**Download:**
+
+```bash
+kaggle datasets download -d tusharjaju/bawarchi-training-data
+unzip bawarchi-training-data.zip
+```
+
+### Detection Model
+
+**YOLOv8m weights** - Not included in repository (download separately)
+
+- Available from: Trained model checkpoint
+- mAP@0.5: 66.51%
+- Classes: 124 ingredients
+- Training: 4 hours on 7,431 images
+- Contact: tusharjaju98@gmail.com for trained weights
 
 ## License
 
@@ -383,3 +414,8 @@ This project is licensed under the MIT License - see the [LICENSE](https://claud
 ![Models Trained](https://img.shields.io/badge/Models%20Trained-3-green)![Training Hours](https://img.shields.io/badge/Training%20Hours-15-orange)![Dataset Size](https://img.shields.io/badge/Dataset-380K%20recipes-red)
 
 **Built for food lovers and ML enthusiasts**
+
+**Related Resources:
+-GitHub Repository:[Tushar-9802/bawarchi](**https://github.com/Tushar-9802/bawarchi**)
+-Model (HuggingFace):[bawarchi-recipe-generation](**https://huggingface.co/Tushar-9802/bawarchi-recipe-generation**)
+-Dataset (Kaggle):**[**bawarchi-training-data**](**https://www.kaggle.com/datasets/tusharjaju/bawarchi-training-data**)
